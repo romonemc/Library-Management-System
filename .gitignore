@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # User-specific files
 *.suo
 *.user
@@ -151,3 +152,18 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+=======
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+>>>>>>> 697fefbe4986f387480fb4e507c2202ce0696c3e
