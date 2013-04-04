@@ -52,7 +52,7 @@ int Library::InsertAt(int index, const Book* b)
 	return 0;
 }
 
-int Library::FindBook(int is, std::string n)
+int Library::SearchLibrary(int is, std::string n)
 {
 	Book* currNode = head;
 	int currIndex = 1;
@@ -73,7 +73,7 @@ int Library::FindBook(int is, std::string n)
 	}
 }
 
-int Library::DeleteBook(int is, std::string n)
+int Library::DeleteBook(int is)
 {
 	Book* prevBook = NULL;
 	Book* currBook = head;
@@ -85,20 +85,44 @@ int Library::DeleteBook(int is, std::string n)
 			currBook = currBook->nextBook;
 			currIndex++;
 		}
-	} else {
-		while(currBook && currBook->name != n) {
+	} 
+
+	if(currBook) {
+		if(prevBook) {
+			prevBook->nextBook = currBook->nextBook;
+			std::cout << currBook->isbn << " - " << currBook->name << " was deleted successfully." << std::endl;
+			delete currBook;
+		} else {
+			head = currBook->nextBook;
+			std::cout << currBook->isbn << " - " << currBook->name << " was deleted successfully." << std::endl;
+			delete currBook;
+		}
+		return currIndex;
+	}
+	return 0;
+}
+
+int Library::DeleteBook(std::string n)
+{
+	Book* prevBook = NULL;
+	Book* currBook = head;
+
+	int currIndex = 1;
+
+	while(currBook && currBook->name != n) {
 			prevBook = currBook;
 			currBook = currBook->nextBook;
 			currIndex++;
-		}
 	}
 
 	if(currBook) {
 		if(prevBook) {
 			prevBook->nextBook = currBook->nextBook;
+			std::cout << currBook->name << " - " << currBook->isbn << " was deleted successfully." << std::endl;
 			delete currBook;
 		} else {
 			head = currBook->nextBook;
+			std::cout << currBook->name << " - " << currBook->isbn << " was deleted successfully." << std::endl;
 			delete currBook;
 		}
 		return currIndex;
@@ -108,7 +132,7 @@ int Library::DeleteBook(int is, std::string n)
 
 bool Library::empty()
 {
-	return head == NULL;
+	return head == NULL;	
 }
 
 void Library::AllBooks()
@@ -117,7 +141,12 @@ void Library::AllBooks()
 	Book* currBook = head;
 
 	while(currBook != NULL) {
-		std::cout << currBook->name << " " << std::endl;
+		std::cout << currBook->isbn 
+				  << " - " << currBook->name 
+				  << " - " << currBook->publisher 
+				  << " - " << currBook->category
+				  << " - " << currBook->edition
+				  << " " << std::endl;
 		currBook = currBook->getNextBook();
 		count++;
 	}

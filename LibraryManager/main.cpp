@@ -8,6 +8,8 @@ using namespace std;
 
 Book* createBook();
 void searchLibrary(Library&);
+void deleteBook(Library&);
+void watchPup();
 
 int main()
 {
@@ -59,13 +61,17 @@ int main()
 		}
 		else if (option == 4)
 		{
-
+			deleteBook(lib);
 		}
 		else if (option == 5)
 		{
 			system("cls");
 			cout << "Goodbye" << endl;
 			return 0;
+		} else {
+			system("cls");
+			cout << "Please enter a valid option!" << endl;
+			Sleep(1000);
 		}
 
 	}
@@ -123,7 +129,7 @@ Book* createBook()
 	Book* newbook = new Book(isbn, quantity, edition, name, category, publisher, authors);
 	cout << name << " succesfully created!" << endl;
 
-	Sleep(3000);
+	Sleep(2000);
 	return newbook;
 }
 
@@ -148,14 +154,14 @@ void searchLibrary(Library& lib)
 		// Search by Name
 		cout << "Enter the name of the book you would like to search for." << endl;
 		getline(cin, searchParam1);
-		lib.FindBook(0, searchParam1);
+		lib.SearchLibrary(0, searchParam1);
 		Sleep(5000);
 		break;
 	case 2:
 		//Search by ISBN
 		cout << "Enter the ISBN of the book you would like to search for." << endl;
 		cin >> searchParam2;
-		lib.FindBook(searchParam2, "Blah");
+		lib.SearchLibrary(searchParam2, "Blah");
 		Sleep(5000);
 		break;
 	default:
@@ -163,4 +169,48 @@ void searchLibrary(Library& lib)
 		break;
 	}	
 
+}
+
+void deleteBook(Library& lib)
+{
+	int option;
+	string deleteParam1;
+	int deleteParam2;
+
+	system("cls");
+
+	cout << "You can either \n"
+		 << "1 - Delete by ISBN \n"
+		 << "2 - Delete by name of book \n"
+		 << "3 - Delete most recently added book."
+		 << endl;
+	cin >> option;
+	cout << endl;
+	switch (option)
+	{
+	case 2:
+		cin.ignore();
+		// Search by Name
+		cout << "Enter the name of the book you would like to delete." << endl;
+		getline(cin, deleteParam1);
+		lib.DeleteBook(deleteParam1);
+		Sleep(3000);
+		break;
+	case 1:
+		//Search by ISBN
+		cout << "Enter the ISBN of the book you would like to delete." << endl;
+		cin >> deleteParam2;
+		lib.DeleteBook(deleteParam2);
+		Sleep(3000);
+		break;
+	default:
+		cout << "Please choose a valid option!" << endl;
+		break;
+	}
+
+}
+
+void watchPup()
+{
+	Sleep(5000);
 }

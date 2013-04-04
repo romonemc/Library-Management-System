@@ -14,8 +14,9 @@ public:
 	std::string front();
 	int InsertAt(int, const Book*);
 	void removeAt(int, const Book);
-	int FindBook(int = 0, std::string n = "Blah");
-	int DeleteBook(int = 0, std::string n = "Blah");
+	int SearchLibrary(int = 0, std::string n = "Blah");
+	int DeleteBook(int);
+	int DeleteBook(std::string);
 	void AllBooks(void);
 	int Count(void);
 private:
