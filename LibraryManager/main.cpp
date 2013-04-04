@@ -17,7 +17,6 @@ int main()
 	Book* b2 = new Book(1002, 1, 1, "Hansel and Gretel", "Fiction", "Carlong");
 	Book* b3 = new Book(1003, 1, 1, "Superman Returns", "Fiction", "DC Comics");
 
-	
 	lib.InsertAt(0, b1);
 	lib.InsertAt(1, b2);
 	lib.InsertAt(2, b3);
@@ -134,12 +133,14 @@ void searchLibrary(Library& lib)
 	int searchParam2 = 1;
 	int option;
 
-	cout << "How would you like to search? "
-		 << "1 - By Name"
+	system("cls");
+
+	cout << "How would you like to search? \n"
+		 << "1 - By Name \n"
 		 << "2 - By ISBN"
 		 << endl;
 	cin >> option;
-
+	cout << endl;
 	switch (option)
 	{
 	case 1:
@@ -148,12 +149,17 @@ void searchLibrary(Library& lib)
 		cout << "Enter the name of the book you would like to search for." << endl;
 		getline(cin, searchParam1);
 		lib.FindBook(0, searchParam1);
+		Sleep(5000);
+		break;
 	case 2:
 		//Search by ISBN
 		cout << "Enter the ISBN of the book you would like to search for." << endl;
 		cin >> searchParam2;
 		lib.FindBook(searchParam2, "Blah");
+		Sleep(5000);
+		break;
 	default:
+		cout << "Please choose a valid option!" << endl;
 		break;
 	}	
 
