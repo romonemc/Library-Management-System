@@ -62,6 +62,9 @@ int Library::SearchLibrary(int is, std::string n)
 			currIndex++;
 		}
 		if(currNode) { std::cout << is << " found at position " << currIndex << " titled " << currNode->getName() << std::endl; }
+		else {
+			std::cout << "Sorry :(, a book with the isbn '"<< is << "' was not found in this library." << std::endl;
+		}
 		return 0;
 	} else {
 		while(currNode && currNode->name != n) {
@@ -69,8 +72,12 @@ int Library::SearchLibrary(int is, std::string n)
 			currIndex++;
 		}
 		if(currNode) { std::cout << n << " found at position " << currIndex << " with the isbn " << currNode->getISBN() << std::endl; }
+		else {
+			std::cout << "Sorry :(, '"<< n << "' was not found in this library." << std::endl;
+		}
 		return 0;
 	}
+
 }
 
 int Library::DeleteBook(int is)
@@ -140,15 +147,16 @@ void Library::AllBooks()
 	int count = 0;
 	Book* currBook = head;
 
+	std::cout << "ISBN \t\tName \t\t\t\t\t\t\tPublisher \t\tCategory \tQuantity" << "\n" << std::endl;
 	while(currBook != NULL) {
 		std::cout << currBook->isbn 
-				  << " - " << currBook->name 
-				  << " - " << currBook->publisher 
-				  << " - " << currBook->category
-				  << " - " << currBook->edition
+				  << " \t\t" << currBook->name 
+				  << " \t\t\t\t" << currBook->publisher 
+				  << " \t\t" << currBook->category
+				  << " \t\t" << currBook->quantity
 				  << " " << std::endl;
 		currBook = currBook->getNextBook();
 		count++;
 	}
-	std::cout << "Their are " << count << " book(s) in this library." << std::endl;
+	std::cout << "\n" << "Their are " << count << " book(s) in this library." << "\n" << std::endl;
 }

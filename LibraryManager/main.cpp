@@ -18,10 +18,12 @@ int main()
 	Book* b1 = new Book(1001, 1, 1, "Jack and the Beanstalk", "Fiction", "Carlong");
 	Book* b2 = new Book(1002, 1, 1, "Hansel and Gretel", "Fiction", "Carlong");
 	Book* b3 = new Book(1003, 1, 1, "Superman Returns", "Fiction", "DC Comics");
+	Book* b4 = new Book(1004, 1, 1, "Jasper and the Evil Monkey", "Fiction", "Bentham Books");
 
 	lib.InsertAt(0, b1);
 	lib.InsertAt(1, b2);
 	lib.InsertAt(2, b3);
+	lib.InsertAt(3, b4);
 
 	cout << "A library has been created and preloaded with books for you. :)" << endl;
 
@@ -37,7 +39,6 @@ int main()
 			 << "2 - Enter a new book into the library \n"
 			 << "3 - Search for a book in the library \n"
 			 << "4 - Delete a book in the library \n"
-			 << "5 - Exit \n"
 			 << endl;
 
 		cin >> option;
@@ -46,6 +47,7 @@ int main()
 		{
 			system("cls");
 			lib.AllBooks();
+			watchPup();
 		} 
 		else if (option == 2)
 		{
@@ -62,12 +64,7 @@ int main()
 		else if (option == 4)
 		{
 			deleteBook(lib);
-		}
-		else if (option == 5)
-		{
-			system("cls");
-			cout << "Goodbye" << endl;
-			return 0;
+
 		} else {
 			system("cls");
 			cout << "Please enter a valid option!" << endl;
@@ -155,14 +152,14 @@ void searchLibrary(Library& lib)
 		cout << "Enter the name of the book you would like to search for." << endl;
 		getline(cin, searchParam1);
 		lib.SearchLibrary(0, searchParam1);
-		Sleep(5000);
+		watchPup();
 		break;
 	case 2:
 		//Search by ISBN
 		cout << "Enter the ISBN of the book you would like to search for." << endl;
 		cin >> searchParam2;
 		lib.SearchLibrary(searchParam2, "Blah");
-		Sleep(5000);
+		watchPup();
 		break;
 	default:
 		cout << "Please choose a valid option!" << endl;
@@ -212,5 +209,14 @@ void deleteBook(Library& lib)
 
 void watchPup()
 {
+	string key;
+
 	Sleep(5000);
+	cout << "\n" << "Press any key to return to menu" << endl;
+	cin >> key;
+	system("cls");
+	cout << "Warping..." << endl;
+	Sleep(1500);
+
+	main();
 }
