@@ -10,7 +10,7 @@ public:
 	Library();
 	~Library(void);
 
-	bool empty();
+	bool Empty();
 	std::string front();
 	int InsertAt(int, const Book*);
 	void removeAt(int, const Book);

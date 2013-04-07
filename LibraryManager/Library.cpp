@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-Library::Library() :head(NULL), size(0)
+Library::Library() :head(NULL)
 {
 
 }
@@ -21,6 +21,7 @@ Library::~Library()
 
 int Library::InsertAt(int index, const Book* b)
 {
+
 	if(index < 0) return NULL;
 
 	int current = 1;
@@ -42,13 +43,28 @@ int Library::InsertAt(int index, const Book* b)
 	//}
 
 	if(index == 0) {
-		newBook->nextBook = head;
-		head = newBook;
-	} else {
-		newBook->nextBook = currNode->nextBook;
-		currNode->nextBook = newBook;
+		try {
+			newBook->nextBook = head;
+			head = newBook;
+			std::cout << "Book Inserted Successfully! :)" << std::endl;
+		} 
+		catch(...)
+		{
+			std::cout << "Oops :(, seems something went wrong. No harm, no foul just try again." << std::endl;
+		}
+	} 
+	else 
+	{
+		try {
+			newBook->nextBook = currNode->nextBook;
+			currNode->nextBook = newBook;
+			std::cout << "Book Inserted Successfully! :)" << std::endl;
+		}
+		catch(...)
+		{
+			std::cout << "Oops :(, seems something went wrong. No harm, no foul just try again." << std::endl;
+		}
 	}
-	std::cout << "Book Inserted Successfully!" << std::endl;
 	return 0;
 }
 
@@ -137,9 +153,21 @@ int Library::DeleteBook(std::string n)
 	return 0;
 }
 
-bool Library::empty()
+bool Library::Empty()
 {
 	return head == NULL;	
+}
+
+int Library::Count() {
+	int count = 0;
+	Book* currBook = head;
+
+	while (currBook != NULL)
+	{
+		currBook = currBook->getNextBook();
+		count++;
+	}
+	return count;
 }
 
 void Library::AllBooks()
