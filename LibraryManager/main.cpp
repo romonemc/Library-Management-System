@@ -13,6 +13,7 @@ void watchPup();
 
 int main()
 {
+	/* Preloaded Library */
 	Library lib;
 
 	Book* b1 = new Book(1001, 1, 1, "Jack and the Beanstalk", "Fiction", "Carlong");
@@ -26,6 +27,8 @@ int main()
 	lib.InsertAt(3, b4);
 
 	cout << "A library has been created and preloaded with books for you. :)" << endl;
+
+	/* END Preloading */
 
 	while(true) {
 

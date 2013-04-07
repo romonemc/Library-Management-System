@@ -21,7 +21,6 @@ public:
 	int Count(void);
 private:
 	Book* head;
-	int size;
 };
 
 #endif

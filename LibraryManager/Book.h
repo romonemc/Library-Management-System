@@ -31,8 +31,9 @@ public:
 
 	int getISBN()const { return isbn; }
 
-	void setNextBook(Book*);
+	void setNextBook(Book* b) { nextBook = b; }
 	Book* getNextBook() { return nextBook; }
+
 
 private:
 	int isbn;

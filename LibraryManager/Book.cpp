@@ -15,11 +15,6 @@ Book::Book(int is, int quant, int ed, std::string n, std::string cat, std::strin
 	nextBook = NULL;
 }
 
-void Book::setNextBook(Book* b)
-{
-	nextBook = b;
-}
-
 void Book::setAuthors(std::vector<std::string> A)
 {
 	int no_authors = A.size();
