@@ -24,7 +24,7 @@ int main()
 	lib.InsertAt(0, b1);
 	lib.InsertAt(1, b2);
 	lib.InsertAt(2, b3);
-	lib.InsertAt(3, b4);
+	lib.InsertAt(0, b4);
 
 	cout << "A library has been created and preloaded with books for you. :)" << endl;
 
@@ -54,8 +54,16 @@ int main()
 		} 
 		else if (option == 2)
 		{
+			int pos;
+			int count = lib.Count();
+
 			Book* newBook = createBook();
-			lib.InsertAt(3, newBook);
+			cout << endl;
+			cout << "Where would you like to insert this book?" << endl;
+			cout << "There are " << count << " books in the library." << endl;
+			cout << "Pro Tip - Enter 1 to insert it at the beginning and " << count + 1 << " to enter it at the end." << endl;
+			cin >> pos;
+			lib.InsertAt(pos - 1, newBook);
 
 			Sleep(2000);
 			system("cls");
