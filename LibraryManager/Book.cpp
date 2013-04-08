@@ -43,6 +43,16 @@ void Book::getAuthors()
 	}
 }
 
+std::string Book::FirstAuthor()
+{
+	if (!authors.empty())
+	{
+		return authors.front();
+	} else {
+		return "No authors.";
+	}
+}
+
 void Book::clearAuthors()
 {
 	authors.clear();

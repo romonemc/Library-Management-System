@@ -21,12 +21,13 @@ void watchPup();
 
 void PreloadLibrary(Library &lib)
 {
+	system("cls");
 	/* Preloading a library */
 
-	Book* b1 = new Book(1001, 1, 1, "Jack and the Beanstalk", "Fiction", "Carlong");
-	Book* b2 = new Book(1002, 1, 1, "Hansel and Gretel", "Fiction", "Carlong");
-	Book* b3 = new Book(1003, 1, 1, "Superman Returns", "Fiction", "DC Comics");
-	Book* b4 = new Book(1004, 1, 1, "Jasper and the Evil Monkey", "Fiction", "Bentham Books");
+	Book* b1 = new Book(1001, 1, 2, "Jack and the Beanstalk", "Fiction", "Carlong");
+	Book* b2 = new Book(1002, 1, 3, "Hansel and Gretel", "Fiction", "Carlong");
+	Book* b3 = new Book(1003, 1, 4, "Superman Returns", "Fiction", "DC Comics");
+	Book* b4 = new Book(1004, 1, 4, "Jasper and the Evil Monkey", "Fiction", "Bentham Books");
 
 	lib.InsertAt(0, b1);
 	lib.InsertAt(1, b2);
@@ -35,7 +36,8 @@ void PreloadLibrary(Library &lib)
 
 	/* END Preloading */
 
-	cout << "A library has been created and preloaded with books for you. :)" << endl;
+	cout << "The library has been preloaded with books for you. :)" << endl;
+	Sleep(1000);
 }
 
 int main()
@@ -55,6 +57,7 @@ int main()
 			 << "5. Edit a book in the library \n"
 			 << "6. View the information for a book.\n"
 			 << "7. Preload Library."
+			 << "\n"
 			 << endl;
 
 		cin >> option;
@@ -72,11 +75,16 @@ int main()
 
 			Book* newBook = createBook();
 			cout << endl;
-			cout << "Where would you like to insert this book?" << endl;
-			cout << "There are " << count << " books in the library." << endl;
-			cout << "Pro Tip - Enter 1 to insert it at the beginning and " << count + 1 << " to enter it at the end." << endl;
-			cin >> pos;
-			lib.InsertAt(pos - 1, newBook);
+
+			if (!lib.Empty()) {
+				cout << "Where would you like to insert this book?" << endl;
+				cout << "There are " << count << " books in the library." << endl;
+				cout << "Pro Tip - Enter 1 to insert it at the beginning and " << count + 1 << " to enter it at the end." << endl;
+				cin >> pos;
+				lib.InsertAt(pos - 1, newBook);
+			} else {
+				lib.InsertAt(0, newBook);
+			}
 
 			Sleep(2000);
 			system("cls");

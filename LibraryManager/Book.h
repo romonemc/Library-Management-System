@@ -27,6 +27,7 @@ public:
 	int getEdition()const { return edition; }
 
 	Book* setAuthors(std::vector<std::string>);
+	std::string FirstAuthor();
 	void clearAuthors();
 	void getAuthors();
 

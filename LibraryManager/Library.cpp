@@ -1,4 +1,4 @@
-#include "Library.h"
+﻿#include "Library.h"
 #include <string>
 #include <iostream>
 
@@ -38,11 +38,6 @@ int Library::InsertAt(int index, const Book* b)
 	if(index > 0 && currNode == NULL) return NULL;
 
 	Book* newBook = new Book(b->isbn, b->quantity, b->edition, b->name, b->category, b->publisher, b->authors);
-
-	//for (int i = 0; i <= b->authors.size(); i++)
-	//{
-	//	newBook->authors.at(i) = b->authors.at(i);
-	//}
 
 	if(index == 0) {
 		try {
@@ -131,22 +126,15 @@ void Library::EditBook(std::string n)
 {
 	Book* currNode = head;
 	int currIndex = 1;
-	std::string decision;
 
 	while(currNode && currNode->name != n) {
 			currNode = currNode->nextBook;
 			currIndex++;
 	} 
 	if(currNode) { 
-		std::cout << "What would you like to edit about " << n << "?" << std::endl;
-		std::cin >> decision;
 
-		if(decision == "Everything") {
 			Questions(currNode);
 			std::cout << currNode->getName() << " updated successfully :)" << std::endl;
-		} else {
-
-		}
 	}
 	else {
 			std::cout << "Sorry :( '"<< n << "' was not found in this library." << std::endl;
@@ -276,18 +264,18 @@ void Library::AllBooks()
 {
 	int count = 0;
 	Book* currBook = head;
-
-	std::cout << "ISBN \t\tName \t\t\t\t\t\t\tPublisher \t\tCategory \tQuantity" << "\n" << std::endl;
 	while(currBook != NULL) {
-		std::cout << currBook->isbn 
-				  << " \t\t" << currBook->name 
-				  << " \t\t\t\t" << currBook->publisher 
-				  << " \t\t" << currBook->category
-				  << " \t\t" << currBook->quantity
-				  << " " << std::endl;
-		currBook = currBook->getNextBook();
-		count++;
+			std::cout << currBook->isbn 
+					  << "\n - Name: " << currBook->name 
+					  << "\n - Publisher: " << currBook->publisher 
+					  << "\n - Category: " << currBook->category
+					  << "\n - Quantity: " << currBook->quantity
+					  << "\n - Edition: " << currBook->edition
+					  << "\n - Author: " << currBook->FirstAuthor()
+					  << " " << std::endl;
+			currBook = currBook->getNextBook();
+			count++;
+
 	}
 	std::cout << "\n" << "Their are " << count << " book(s) in this library." << "\n" << std::endl;
 }
-
