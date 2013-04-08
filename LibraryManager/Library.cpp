@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 
+void Questions(Book*);
+
 Library::Library() :head(NULL)
 {
 
@@ -50,7 +52,7 @@ int Library::InsertAt(int index, const Book* b)
 		} 
 		catch(...)
 		{
-			std::cout << "Oops :(, seems something went wrong. No harm, no foul just try again." << std::endl;
+			std::cout << "Oops :( seems something went wrong. No harm, no foul just try again." << std::endl;
 		}
 	} 
 	else 
@@ -125,6 +127,32 @@ int Library::DeleteBook(int is)
 	return 0;
 }
 
+void Library::EditBook(std::string n)
+{
+	Book* currNode = head;
+	int currIndex = 1;
+	std::string decision;
+
+	while(currNode && currNode->name != n) {
+			currNode = currNode->nextBook;
+			currIndex++;
+	} 
+	if(currNode) { 
+		std::cout << "What would you like to edit about " << n << "?" << std::endl;
+		std::cin >> decision;
+
+		if(decision == "Everything") {
+			Questions(currNode);
+			std::cout << currNode->getName() << " updated successfully :)" << std::endl;
+		} else {
+
+		}
+	}
+	else {
+			std::cout << "Sorry :( '"<< n << "' was not found in this library." << std::endl;
+	}
+}
+
 int Library::DeleteBook(std::string n)
 {
 	Book* prevBook = NULL;
@@ -170,6 +198,80 @@ int Library::Count() {
 	return count;
 }
 
+void Questions(Book* b)
+{
+	system("cls");
+
+	int isbn;
+	int edition;
+	int quantity;
+	int no_authors;
+	std::string name;
+	std::string publisher;
+	std::string category;
+	std::string author_name;
+	std::vector<std::string> auth;
+
+	std::cout << "ISBN: " << std::endl;
+	std::cin >> isbn;
+	std::cin.ignore();
+
+	std::cout << "Name: " << std::endl;
+	std::getline(std::cin, name);
+
+	std::cout << "Edition: " << std::endl;
+	std::cin >> edition;
+
+	std::cout << "Quantity: " << std::endl;
+	std::cin >> quantity;
+	std::cin.ignore();
+
+	std::cout << "Publisher: " << std::endl;
+	std::getline(std::cin, publisher);
+
+	std::cout << "Category (Fiction or Non-Fiction): " << std::endl;
+	std::cin >> category;
+
+	std::cout << "How many authors does " << name << " have?" << std::endl;
+	std::cin >> no_authors;
+	std::cin.ignore();
+
+	b->clearAuthors();
+
+	for (int i = 0; i < no_authors; i++)
+	{
+		std::cout << "Enter the name of author " << i + 1 << std::endl;
+		getline(std::cin, author_name);
+		auth.push_back(author_name);
+	}
+
+	b->setISBN(isbn)->setName(name)->setEdition(edition)->setPublisher(publisher)->setAuthors(auth)->setQuantity(quantity);
+}
+
+void Library::DisplayBookInfo(std::string n)
+{
+	Book* currNode = head;
+
+	while(currNode && currNode->name != n) {
+		currNode = currNode->nextBook;
+	}
+
+	if(currNode) {
+		std::cout << std::endl;
+		std::cout << "ISBN: " << currNode->getISBN() << std::endl;
+		std::cout << "Name: " << currNode->getName() << std::endl;
+		std::cout << "Edition: " << currNode->getEdition() << std::endl;
+		std::cout << "Publisher: " << currNode->getPublisher() << std::endl;
+		std::cout << "Quantity: " << currNode->getQuantity() << std::endl;
+		std::cout << "Category: " << currNode->getCategory() << std::endl;
+		currNode->getAuthors();
+
+	} else {
+		std::cout << "Sorry :( '"<< n << "' was not found in this library." << std::endl;
+	}
+
+}
+
 void Library::AllBooks()
 {
 	int count = 0;
@@ -188,3 +290,4 @@ void Library::AllBooks()
 	}
 	std::cout << "\n" << "Their are " << count << " book(s) in this library." << "\n" << std::endl;
 }
+

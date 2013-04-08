@@ -1,3 +1,11 @@
+/*
+	name: Library/Book Management System
+	programmer: Romone Mcfarlane
+	date: April 2, 2013
+	programme: MIS 2
+	
+*/
+
 #include "Book.h"
 #include "Library.h"
 #include <string>
@@ -11,10 +19,14 @@ void searchLibrary(Library&);
 void deleteBook(Library&);
 void watchPup();
 
-int main()
+void PreloadLibrary(Library &lib)
 {
+<<<<<<< HEAD
 	/* Preloaded Library */
 	Library lib;
+=======
+	/* Preloading a library */
+>>>>>>> tweaking
 
 	Book* b1 = new Book(1001, 1, 1, "Jack and the Beanstalk", "Fiction", "Carlong");
 	Book* b2 = new Book(1002, 1, 1, "Hansel and Gretel", "Fiction", "Carlong");
@@ -24,35 +36,43 @@ int main()
 	lib.InsertAt(0, b1);
 	lib.InsertAt(1, b2);
 	lib.InsertAt(2, b3);
-	lib.InsertAt(0, b4);
+	lib.InsertAt(3, b4);
+
+	/* END Preloading */
 
 	cout << "A library has been created and preloaded with books for you. :)" << endl;
+}
+
+int main()
+{
+	Library lib;
 
 	/* END Preloading */
 
 	while(true) {
 
 		int option;
-
-		Sleep(2000);
 		system("cls");
 
 		cout << "What would you like to do?" << "\n" 
-			 << "1 - View all books in the library \n" 
-			 << "2 - Enter a new book into the library \n"
-			 << "3 - Search for a book in the library \n"
-			 << "4 - Delete a book in the library \n"
+			 << "1. View all books in the library \n" 
+			 << "2. Enter a new book into the library \n"
+			 << "3. Search for a book in the library \n"
+			 << "4. Delete a book in the library \n"
+			 << "5. Edit a book in the library \n"
+			 << "6. View the information for a book.\n"
+			 << "7. Preload Library."
 			 << endl;
 
 		cin >> option;
 
-		if (option == 1)
+		if (option == 1) // List all books in library
 		{
 			system("cls");
 			lib.AllBooks();
 			watchPup();
 		} 
-		else if (option == 2)
+		else if (option == 2) // Enter a new book
 		{
 			int pos;
 			int count = lib.Count();
@@ -68,15 +88,42 @@ int main()
 			Sleep(2000);
 			system("cls");
 		}
-		else if (option == 3)
+		else if (option == 3) // Search for a book
 		{
 			searchLibrary(lib);
 		}
-		else if (option == 4)
+		else if (option == 4) // Delete a book
 		{
 			deleteBook(lib);
+		}
+		else if(option == 5) // Edit a book
+		{
+			string book;
 
-		} else {
+			cin.ignore();
+			cout << "Please enter the name of the book that you would like to edit." << endl;
+			getline(cin, book);
+
+			lib.EditBook(book);
+			Sleep(2000);
+		}
+		else if(option == 6)
+		{
+			string book;
+
+			cin.ignore();
+			cout << "Please enter the name of the book that you would like to view." << endl;
+			getline(cin, book);
+
+			lib.DisplayBookInfo(book);
+			watchPup();
+		} 
+		else if (option == 7)
+		{
+			PreloadLibrary(lib);
+		}
+		else {
+
 			system("cls");
 			cout << "Please enter a valid option!" << endl;
 			Sleep(1000);
@@ -218,16 +265,17 @@ void deleteBook(Library& lib)
 
 }
 
+// Gives user option to return to menu
 void watchPup()
 {
 	string key;
 
-	Sleep(5000);
+	Sleep(3000);
 	cout << "\n" << "Press any key to return to menu" << endl;
 	cin >> key;
 	system("cls");
 	cout << "Warping..." << endl;
-	Sleep(1500);
+	Sleep(500);
+	system("cls");	
 
-	main();
 }

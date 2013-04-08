@@ -17,7 +17,9 @@ public:
 	int SearchLibrary(int = 0, std::string n = "Blah");
 	int DeleteBook(int);
 	int DeleteBook(std::string);
+	void EditBook(std::string);
 	void AllBooks(void);
+	void DisplayBookInfo(std::string);
 	int Count(void);
 private:
 	Book* head;
