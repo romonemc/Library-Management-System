@@ -1,6 +1,7 @@
 ﻿#include "Library.h"
 #include <string>
 #include <iostream>
+#include <fstream>
 
 void Questions(Book*);
 
@@ -19,6 +20,7 @@ Library::~Library()
 		delete currBook;
 		currBook = nextBook;
 	}
+
 }
 
 int Library::InsertAt(int index, const Book* b)
@@ -59,7 +61,7 @@ int Library::InsertAt(int index, const Book* b)
 		}
 		catch(...)
 		{
-			std::cout << "Oops :(, seems something went wrong. No harm, no foul just try again." << std::endl;
+			std::cout << "Oops :( seems something went wrong. No harm, no foul just try again." << std::endl;
 		}
 	}
 	return 0;
@@ -76,7 +78,7 @@ int Library::SearchLibrary(int is, std::string n)
 		}
 		if(currNode) { std::cout << is << " found at position " << currIndex << " titled " << currNode->getName() << std::endl; }
 		else {
-			std::cout << "Sorry :(, a book with the isbn '"<< is << "' was not found in this library." << std::endl;
+			std::cout << "Sorry :( a book with the isbn '"<< is << "' was not found in this library." << std::endl;
 		}
 		return 0;
 	} else {
@@ -264,17 +266,18 @@ void Library::AllBooks()
 {
 	int count = 0;
 	Book* currBook = head;
+
 	while(currBook != NULL) {
-			std::cout << currBook->isbn 
-					  << "\n - Name: " << currBook->name 
-					  << "\n - Publisher: " << currBook->publisher 
-					  << "\n - Category: " << currBook->category
-					  << "\n - Quantity: " << currBook->quantity
-					  << "\n - Edition: " << currBook->edition
-					  << "\n - Author: " << currBook->FirstAuthor()
-					  << " " << std::endl;
-			currBook = currBook->getNextBook();
-			count++;
+		std::cout << currBook->isbn 
+					<< "\n - Name: " << currBook->name 
+					<< "\n - Publisher: " << currBook->publisher 
+					<< "\n - Category: " << currBook->category
+					<< "\n - Quantity: " << currBook->quantity
+					<< "\n - Edition: " << currBook->edition
+					<< "\n - Author: " << currBook->FirstAuthor()
+					<< " " << std::endl;
+		currBook = currBook->getNextBook();
+		count++;
 
 	}
 	std::cout << "\n" << "Their are " << count << " book(s) in this library." << "\n" << std::endl;

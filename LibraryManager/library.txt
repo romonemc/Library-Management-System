@@ -1,0 +1,18 @@
+1002
+ - Name: Hansel and Gretel
+ - Publisher: Carlong
+ - Category: Fiction
+ - Quantity: 1
+ - Edition: 3
+1003
+ - Name: Superman Returns
+ - Publisher: DC Comics
+ - Category: Fiction
+ - Quantity: 1
+ - Edition: 4
+1004
+ - Name: Jasper and the Evil Monkey
+ - Publisher: Bentham Books
+ - Category: Fiction
+ - Quantity: 1
+ - Edition: 4

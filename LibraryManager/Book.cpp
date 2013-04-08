@@ -15,6 +15,13 @@ Book::Book(int is, int quant, int ed, std::string n, std::string cat, std::strin
 	nextBook = NULL;
 }
 
+Book::Book(int is, int quant, int ed, std::string n, std::string cat, std::string pub, std::string auth1)
+	:isbn(is), quantity(quant), edition(ed), name(n), category(cat), publisher(pub)
+{
+	authors.push_back(auth1);
+	nextBook = NULL;
+}
+
 void Book::setNextBook(Book* b)
 {
 	nextBook = b;
@@ -36,7 +43,7 @@ void Book::getAuthors()
 {
 	int no_authors = authors.size();
 
-	std::cout << "The author(s) of this book is " << std::endl;
+	std::cout << "Author(s): " << std::endl;
 	for (int i = 0; i < no_authors; i++)
 	{
 		std::cout << authors.at(i) << std::endl;

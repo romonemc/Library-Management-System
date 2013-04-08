@@ -9,6 +9,7 @@ class Book {
 public:
 	Book() { nextBook = NULL; };
 	Book(int, int, int, std::string, std::string, std::string);
+	Book(int, int, int, std::string, std::string, std::string, std::string);
 	Book(int, int, int, std::string, std::string, std::string, std::vector<std::string>);
 
 	Book* setName(std::string n) { name = n; return this; }

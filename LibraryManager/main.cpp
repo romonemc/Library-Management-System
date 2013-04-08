@@ -24,10 +24,16 @@ void PreloadLibrary(Library &lib)
 	system("cls");
 	/* Preloading a library */
 
-	Book* b1 = new Book(1001, 1, 2, "Jack and the Beanstalk", "Fiction", "Carlong");
-	Book* b2 = new Book(1002, 1, 3, "Hansel and Gretel", "Fiction", "Carlong");
-	Book* b3 = new Book(1003, 1, 4, "Superman Returns", "Fiction", "DC Comics");
-	Book* b4 = new Book(1004, 1, 4, "Jasper and the Evil Monkey", "Fiction", "Bentham Books");
+	vector<string> authors;
+	authors.push_back("John Williams");
+	authors.push_back("Abe Murray");
+	authors.push_back("Steven King");
+	authors.push_back("Ted Burns");
+
+	Book* b1 = new Book(1001, 1, 2, "Jack and the Beanstalk", "Fiction", "Carlong", authors.at(0));
+	Book* b2 = new Book(1002, 1, 3, "Hansel and Gretel", "Fiction", "Carlong", authors.at(1));
+	Book* b3 = new Book(1003, 1, 4, "Superman Returns", "Fiction", "DC Comics", authors.at(2));
+	Book* b4 = new Book(1004, 1, 4, "Jasper and the Evil Monkey", "Fiction", "Bentham Books", authors.at(3));
 
 	lib.InsertAt(0, b1);
 	lib.InsertAt(1, b2);
@@ -37,6 +43,7 @@ void PreloadLibrary(Library &lib)
 	/* END Preloading */
 
 	cout << "The library has been preloaded with books for you. :)" << endl;
+
 	Sleep(1000);
 }
 
