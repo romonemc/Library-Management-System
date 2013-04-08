@@ -11,25 +11,27 @@ public:
 	Book(int, int, int, std::string, std::string, std::string);
 	Book(int, int, int, std::string, std::string, std::string, std::vector<std::string>);
 
-	void setName(std::string n) { name = n; }
+	Book* setName(std::string n) { name = n; return this; }
 	std::string getName() { return name; }
 
-	void setCategory(std::string cat) { category = cat; }
+	Book* setCategory(std::string cat) { category = cat; return this; }
 	std::string getCategory()const { return category; }
 
-	void setPublisher(std::string pub) { publisher = pub; }
+	Book* setPublisher(std::string pub) { publisher = pub; return this; }
 	std::string getPublisher()const { return publisher; }
 
-	void setQuantity(int quant) { quantity = quant; }
+	Book* setQuantity(int quant) { quantity = quant; return this; }
 	int getQuantity()const { return quantity; }
 
-	void setEdition(int ed) { edition = ed; }
+	Book* setEdition(int ed) { edition = ed; return this; }
 	int getEdition()const { return edition; }
 
-	void setAuthors(std::vector<std::string>);
+	Book* setAuthors(std::vector<std::string>);
+	void clearAuthors();
 	void getAuthors();
 
 	int getISBN()const { return isbn; }
+	Book* setISBN(int is) { isbn = is; return this; }
 
 	void setNextBook(Book*);
 	Book* getNextBook() { return nextBook; }

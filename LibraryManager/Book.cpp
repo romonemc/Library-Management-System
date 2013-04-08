@@ -20,14 +20,16 @@ void Book::setNextBook(Book* b)
 	nextBook = b;
 }
 
-void Book::setAuthors(std::vector<std::string> A)
+Book* Book::setAuthors(std::vector<std::string> A)
 {
 	int no_authors = A.size();
 
 	for (int i = 0; i < no_authors; i++)
 	{
-		authors.at(i) = A.at(i);
+		authors.push_back(A.at(i));
 	}
+
+	return this;
 }
 
 void Book::getAuthors()
@@ -39,4 +41,9 @@ void Book::getAuthors()
 	{
 		std::cout << authors.at(i) << std::endl;
 	}
+}
+
+void Book::clearAuthors()
+{
+	authors.clear();
 }
