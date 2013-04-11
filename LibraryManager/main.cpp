@@ -50,7 +50,7 @@ void PreloadLibrary(Library &lib)
 int main()
 {
 	Library lib;
-
+	system("Color F0");
 	while(true) {
 
 		int option;
@@ -129,6 +129,9 @@ int main()
 		else if (option == 7)
 		{
 			PreloadLibrary(lib);
+			cout << "\n";
+			lib.AllBooks();
+			watchPup();
 		}
 		else {
 
