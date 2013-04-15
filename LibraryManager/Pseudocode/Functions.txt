@@ -1,0 +1,131 @@
+START
+InsertAt(index <int>, *b <Book>)
+
+IF index < 0 THEN
+	RETURN NULL
+END IF
+
+DECLARE current <int> = 1
+DECLARE currNode <Book*> = head
+
+WHILE currNode AND index > current DO
+	currNode = currNode->nextBook
+	current = current + 1
+END WHILE
+
+IF index > 0 AND currNode = NULL THEN
+	RETURN NULL
+END IF
+
+Book* newBook = new Book(b->isbn, b->quantity, b->edition, b->name, b->category, b->publisher, b->authors)
+
+IF index = 0 THEN
+	try
+		newBook->nextBook = head;
+		head = newBook;
+		PRINT "Book inserted successfully!"
+	catch
+		PRINT "Oops :( seems something went wrong. No harm, no foul just try again."
+ELSE
+	try
+		newBook->nextBook = currNode->nextBook
+		currNode->nextBook = newBook;
+		PRINT "Book inserted successfully!"
+	catch
+		PRINT "Oops :( seems something went wrong. No harm, no foul just try again."
+END IF
+
+RETURN 0
+END InsertAt
+
+
+Library::Count()
+
+DECLARE current <int> = 0
+DECLARE currNode <Book*> = head
+
+WHILE currBook <> NULL
+	currBook = currBook->getNextBook()
+	count = count + 1
+END WHILE
+
+RETURN count
+
+Library::AllBooks()
+START
+
+INTEGER count = 0
+Book* currBook = head;
+
+WHILE currBook <> NULL
+	PRINT currBook->isbn
+	PRINT currBook->name
+	PRINT currBook->publisher
+	PRINT currBook->category
+	PRINT currBook->quantity
+	PRINT currBook->edition
+	PRINT currBook->FirstAuthor()
+
+	currBook = currBook->getNextBook()
+	SET count = count + 1
+END WHILE
+
+PRINT "Their are "
+PRINT count 
+PRINT " book(s) in this library."
+
+END
+
+DeleteBook(is <int>)
+START
+Book* prevBook = NULL
+Book* currBook = head
+INTEGER currIndex = 1
+
+IF is <> 0 THEN
+WHILE currBook AND currBook->isbn <> is DO
+	SET prevBook = currBook
+	SET currBook = currBook->nextBook
+	currIndex = currIndex + 1
+END WHILE
+
+IF currBook THEN
+	IF prevBook THEN
+		prevBook->nextBook = currBook->nextbook
+		DELETE currBook
+	ELSE
+		head = currBook->nextBook
+		DELETE currBook
+	ENDIF
+	RETURN currIndex
+END IF
+RETURN 0
+
+END
+
+DeleteBook(n <string>)
+START
+Book* prevBook = NULL
+Book* currBook = head
+
+INTEGER currIndex = 1
+
+WHILE currBook AND currBook->name <> n DO
+	SET prevBook = currBook
+	SET currBook = currBook->nextBook
+	currIndex = currIndex + 1
+END WHILE
+
+IF currBook THEN
+	IF prevBook THEN
+		prevBook->nextBook = currBook->nextbook
+		DELETE currBook
+	ELSE
+		head = currBook->nextBook
+		DELETE currBook
+	ENDIF
+	RETURN currIndex
+END IF
+RETURN 0
+
+END
